@@ -1,0 +1,27 @@
+ext {
+  localRepoUrl = new File(rootDir, "../repo").toURL()
+}
+
+subprojects {
+  apply plugin: 'java'
+  apply plugin: 'application'
+
+  group = 'mycompany'
+  version = '1.0'
+
+  repositories {
+      // Use jcenter for resolving dependencies.
+      // You can declare any Maven/Ivy/file repository here.
+      jcenter()
+      maven {
+        url = localRepoUrl
+      }
+  }
+
+  dependencies {
+      implementation platform('mycompany:platform-project:1.0')
+
+      // This dependency is used by the application.
+      implementation 'com.google.guava:guava'
+  }
+}

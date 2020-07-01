@@ -1,0 +1,40 @@
+plugins {
+    id 'java-platform'
+    id 'maven-publish'
+}
+
+ext {
+  localRepoUrl = new File(rootDir, "../repo").toURL()
+}
+
+repositories {
+    // Use jcenter for resolving dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+    maven {
+      url = localRepoUrl
+    }
+}
+
+dependencies {
+  constraints {
+    api 'mycompany:library-a:1.0'
+    api 'mycompany:library-b:1.0'
+    api 'com.google.guava:guava:29.0-jre'
+  }
+}
+
+group = 'mycompany'
+version = '1.0'
+publishing {
+  repositories {
+    maven {
+      url = localRepoUrl
+    }
+  }
+  publications {
+    maven(MavenPublication) {
+      from components.javaPlatform
+    }
+  }
+}

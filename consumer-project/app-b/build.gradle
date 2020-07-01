@@ -1,0 +1,8 @@
+application {
+  // Define the main class for the application.
+  mainClassName = 'consumer.project.AppB'
+}
+
+dependencies {
+    implementation 'mycompany:library-b'
+}
