@@ -67,3 +67,16 @@ consumer-project/app-b/build/install/app-b/lib
 ├── library-b-1.0.jar
 └── listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar
 ```
+
+### Analysis from Gradle Build scans
+
+Here's a build scan where the includedBuild is commented out in `consumer-project/settings.gradle`:
+https://scans.gradle.com/s/b4jwxcbzixftc . 
+
+![image](https://user-images.githubusercontent.com/66864/86291232-5d9b5a80-bbf7-11ea-83b9-38d5761c9c63.png)
+
+That shows that `library-a` is a constraint of `app-a` and `library-b` is a constraint of `app-b` when the includedBuild is not present. 
+
+With the includedBuild & dependency substitution in `settings.gradle`, the constraint has turned into an ordinary dependency, build scan is https://scans.gradle.com/s/zkdxr6mctbxg6. In addition there is both `library-a` and `library-b` as dependencies of the platform in both `app-a` and `app-b`:
+
+![image](https://user-images.githubusercontent.com/66864/86291313-7efc4680-bbf7-11ea-935a-dbbdba87805c.png)
