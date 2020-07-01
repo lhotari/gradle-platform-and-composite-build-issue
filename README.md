@@ -1,5 +1,7 @@
 # Reproduce Gradle issue with platform / composite build & dependency substitution
 
+This issue has been reported as https://github.com/gradle/gradle/issues/13658.
+
 ## The problem
 
 ### Background
